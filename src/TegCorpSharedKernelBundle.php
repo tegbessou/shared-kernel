@@ -8,5 +8,4 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class TegCorpSharedKernelBundle extends AbstractBundle
 {
-
 }
