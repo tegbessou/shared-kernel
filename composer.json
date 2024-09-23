@@ -1,4 +1,6 @@
 {
+    "name": "tegbessou/shared-kernel",
+    "description": "Shared Kernel",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
