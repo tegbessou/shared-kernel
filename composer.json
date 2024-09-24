@@ -1,7 +1,7 @@
 {
     "name": "tegbessou/shared-kernel",
     "description": "Shared Kernel",
-    "type": "project",
+    "type": "symfony-bundle",
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
