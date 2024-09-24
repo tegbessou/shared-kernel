@@ -15,7 +15,7 @@ class TegCorpSharedKernelBundle extends AbstractBundle
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         // load an XML, PHP or YAML file
-        $loader = new YamlFileLoader($builder, new FileLocator(__DIR__.'../config'));
+        $loader = new YamlFileLoader($builder, new FileLocator(__DIR__.'/../config'));
         $loader->load('messenger.yaml');
         $loader->load('services.yaml');
     }
