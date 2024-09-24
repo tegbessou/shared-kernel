@@ -4,18 +4,24 @@ declare(strict_types=1);
 
 namespace TegCorp\SharedKernelBundle;
 
-use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use TegCorp\SharedKernelBundle\Infrastructure\DependencyInjection\TegCorpSharedKernelExtension;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class TegCorpSharedKernelBundle extends Bundle
+class TegCorpSharedKernelBundle extends AbstractBundle
 {
-    public function getContainerExtension(): ?ExtensionInterface
+    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        if (null === $this->extension) {
-            $this->extension = new TegCorpSharedKernelExtension();
-        }
+        // load an XML, PHP or YAML file
+        $loader = new YamlFileLoader($builder, new FileLocator(__DIR__.'../config'));
+        $loader->load('messenger.yaml');
+        $loader->load('services.yaml');
+    }
 
-        return $this->extension;
+    public function getPath(): string
+    {
+        return \dirname(__DIR__);
     }
 }
