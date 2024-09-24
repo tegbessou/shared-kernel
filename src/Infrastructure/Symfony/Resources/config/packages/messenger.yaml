@@ -9,4 +9,4 @@ framework:
             event.bus: ~
         routing:
             'TegCorp\SharedKernelBundle\Application\Command\CommandInterface': sync
-            'TegCorp\SharedKernelBundle\Application\Query': sync
+            'TegCorp\SharedKernelBundle\Application\Query\QueryInterface': sync
