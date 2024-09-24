@@ -5,9 +5,7 @@ services:
         autowire: true
         autoconfigure: true
 
-    App\:
+    TegCorp\:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'

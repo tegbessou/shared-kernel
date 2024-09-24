@@ -8,5 +8,5 @@ framework:
             query.bus: ~
             event.bus: ~
         routing:
-            'App\Shared\Application\Command\CommandInterface': sync
-            'App\Shared\Application\Query\QueryInterface': sync
+            'TegCorp\SharedKernelBundle\Application\Command\CommandInterface': sync
+            'TegCorp\SharedKernelBundle\Application\Query': sync

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace TegCorp\SharedKernelBundle\Application\EventDispatcher;
 
-use App\Shared\Domain\Entity\EntityWithDomainEventInterface;
-use App\Shared\Domain\Service\DomainEventDispatcherInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use TegCorp\SharedKernelBundle\Domain\Entity\EntityWithDomainEventInterface;
+use TegCorp\SharedKernelBundle\Domain\Service\DomainEventDispatcherInterface;
 
 final readonly class DomainEventDispatcher implements DomainEventDispatcherInterface
 {
