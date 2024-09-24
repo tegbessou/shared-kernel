@@ -13,26 +13,18 @@ use Symfony\Component\Yaml\Yaml;
 
 class TegCorpSharedKernelBundle extends AbstractBundle
 {
-    public function configureContainer(ContainerConfigurator $container): void
+    public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $container->import(__DIR__.'/../config/{services,messenger}.yaml');
-    }
+        $config = Yaml::parseFile(__DIR__.'/../config/messenger.yaml');
 
-    /*public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
-    {
-        $configs = Yaml::parseFile(__DIR__.'/../config/messenger.yaml');
-        $builder->prependExtensionConfig('framework', $configs['messenger']);
+        if (isset($config['framework'])) {
+            $builder->prependExtensionConfig('framework', $config['framework']);
+        }
     }
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $loader = new YamlFileLoader($builder, new FileLocator(__DIR__.'/../config'));
-        $loader->load('messenger.yaml');
         $loader->load('services.yaml');
     }
-
-    public function getPath(): string
-    {
-        return \dirname(__DIR__);
-    }*/
 }
