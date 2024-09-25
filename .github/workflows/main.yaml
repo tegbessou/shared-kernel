@@ -27,3 +27,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Fix CS
         uses: docker://oskarstark/php-cs-fixer-ga
+  tests:
+    runs-on: ubuntu-22.04
+    name: PHPUnit
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+      - run: |
+          composer install --ignore-platform-reqs
+           XDEBUG_MODE=off vendor/bin/phpunit
