@@ -9,7 +9,3 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-
-    TegCorp\SharedKernelBundle\Application\Command\AsCommandHandler:
-        tags:
-            - { name: messenger.message_handler, bus: command.bus }
