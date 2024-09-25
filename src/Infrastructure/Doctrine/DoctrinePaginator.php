@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine;
 
-use TegCorp\SharedKernelBundle\Domain\Repository\PaginatorInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use TegCorp\SharedKernelBundle\Domain\Repository\PaginatorInterface;
 
 /**
  * @template T of object
@@ -26,7 +26,7 @@ final readonly class DoctrinePaginator implements PaginatorInterface
         $firstResult = $paginator->getQuery()->getFirstResult();
         $maxResults = $paginator->getQuery()->getMaxResults();
 
-        if ($maxResults === null) {
+        if (null === $maxResults) {
             throw new \InvalidArgumentException('Missing maxResults from the query.');
         }
 

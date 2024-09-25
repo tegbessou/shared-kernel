@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine;
 
-use TegCorp\SharedKernelBundle\Application\Service\TransactionInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use TegCorp\SharedKernelBundle\Application\Service\TransactionInterface;
 
 final readonly class Transaction implements TransactionInterface
 {

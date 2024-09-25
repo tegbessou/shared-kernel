@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace TegCorp\SharedKernelBundle\Infrastructure\Symfony\Messenger;
 
-use TegCorp\SharedKernelBundle\Application\Query\QueryBusInterface;
-use TegCorp\SharedKernelBundle\Application\Query\QueryInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
+use TegCorp\SharedKernelBundle\Application\Query\QueryBusInterface;
+use TegCorp\SharedKernelBundle\Application\Query\QueryInterface;
 
 final class MessengerQueryBus implements QueryBusInterface
 {

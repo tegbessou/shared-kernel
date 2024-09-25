@@ -1,0 +1,20 @@
+parameters:
+    level: 8
+    paths:
+        - config/
+        - src/
+        - tests/
+    tmpDir: var/cache/phpstan
+    ignoreErrors:
+        -
+            identifier: missingType.iterableValue
+        -
+            message: '#PHPDoc tag \@return with type TegCorp\\SharedKernelBundle\\Infrastructure\\Doctrine\\DoctrineRepository\<T of object\> is not subtype of native type static\(TegCorp\\SharedKernelBundle\\Infrastructure\\Doctrine\\DoctrineRepository\<T of object\>\).#'
+            path: src/Infrastructure/Doctrine/DoctrineRepository.php
+        -
+            message: '#PHPDoc tag \@return with type TegCorp\\SharedKernelBundle\\Domain\\Repository\\RepositoryInterface\<T of object\> is not subtype of native type static\(TegCorp\\SharedKernelBundle\\Domain\\Repository\\RepositoryInterface\<T of object\>\).#'
+            path: src/Domain/Repository/RepositoryInterface.php
+
+        -
+            message: '#Parameter \#1 \$from of method Doctrine\\ORM\\QueryBuilder\:\:from\(\) expects class-string, string given.#'
+            path: src/Infrastructure/Doctrine/DoctrineRepository.php

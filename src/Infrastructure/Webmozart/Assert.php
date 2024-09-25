@@ -42,7 +42,7 @@ final class Assert extends BaseAssert
             $matchExtensionOnce = true;
         }
 
-        if ($matchExtensionOnce === false) {
+        if (false === $matchExtensionOnce) {
             static::reportInvalidArgument(\sprintf(
                 $message ?: 'Expect extension was in this list for picture %s. Got: %s',
                 implode(', ', self::PICTURE_SUPPORTED_EXTENSION),

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace TegCorp\SharedKernelBundle\Infrastructure\Symfony\Messenger;
 
-use TegCorp\SharedKernelBundle\Application\Command\CommandBusInterface;
-use TegCorp\SharedKernelBundle\Application\Command\CommandInterface;
-use TegCorp\SharedKernelBundle\Application\Service\TransactionInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
+use TegCorp\SharedKernelBundle\Application\Command\CommandBusInterface;
+use TegCorp\SharedKernelBundle\Application\Command\CommandInterface;
+use TegCorp\SharedKernelBundle\Application\Service\TransactionInterface;
 
 final class MessengerCommandBus implements CommandBusInterface
 {

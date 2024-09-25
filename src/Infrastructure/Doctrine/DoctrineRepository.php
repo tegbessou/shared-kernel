@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine;
 
-use TegCorp\SharedKernelBundle\Domain\Repository\PaginatorInterface;
-use TegCorp\SharedKernelBundle\Domain\Repository\RepositoryInterface;
-use TegCorp\SharedKernelBundle\Infrastructure\Webmozart\Assert;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use TegCorp\SharedKernelBundle\Domain\Repository\PaginatorInterface;
+use TegCorp\SharedKernelBundle\Domain\Repository\RepositoryInterface;
+use TegCorp\SharedKernelBundle\Infrastructure\Webmozart\Assert;
 
 /**
  * @template T of object
@@ -56,7 +56,7 @@ abstract class DoctrineRepository implements RepositoryInterface
     #[\Override]
     public function paginator(): ?PaginatorInterface
     {
-        if ($this->page === null || $this->itemsPerPage === null) {
+        if (null === $this->page || null === $this->itemsPerPage) {
             return null;
         }
 
