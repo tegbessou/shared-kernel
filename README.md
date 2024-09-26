@@ -9,3 +9,4 @@
   - Automatic tag when pr merged
   - Automatic release when tag created
   - Dependabot
+
