@@ -34,6 +34,20 @@ jobs:
       - name: Fix CS
         uses: docker://oskarstark/php-cs-fixer-ga
 
+  deptrac:
+    runs-on: ubuntu-22.04
+    name: Deptrac
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+      - run: |
+          composer install --ignore-platform-reqs
+          XDEBUG_MODE=off vendor/bin/deptrac --report-uncovered
+
   tests:
     runs-on: ubuntu-22.04
     name: PHPUnit
