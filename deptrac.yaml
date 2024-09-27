@@ -1,0 +1,78 @@
+deptrac:
+    paths:
+        - ./src
+
+    exclude_files:
+        - '#.*test.*#'
+
+    layers:
+        - name: Domain
+          collectors:
+              - type: directory
+                value: .+/Domain/.*
+
+        - name: Application
+          collectors:
+              - type: directory
+                value: .+/Application/.*
+
+        - name: Infrastructure
+          collectors:
+              - type: directory
+                value: .+/Infrastructure/.*
+
+        - name: Vendors
+          collectors:
+              - type: classNameRegex
+                value: '#^ApiPlatform\\#'
+              - type: classNameRegex
+                value: '#^Symfony\\(?!(Contracts\\EventDispatcher))#'
+              - type: classNameRegex
+                value: '#^Doctrine\\ORM\\(?!(Mapping))#'
+              - type: classNameRegex
+                value: '#^Webmozart\\Assert\\Assert#'
+
+        - name: Attributes
+          collectors:
+              - type: classNameRegex
+                value: '#^Override#'#'
+
+        - name: Uuid
+          collectors:
+              - type: classNameRegex
+                value: '#^Ramsey\\#'
+
+        - name: Helpers
+          collectors:
+              - type: classNameRegex
+                value: '#^App\\Shared\\Infrastructure\\Webmozart\\Assert#'
+
+        - name: Events
+          collectors:
+              - type: classNameRegex
+                value: '#^Symfony\\Contracts\\EventDispatcher\\#'
+
+    ruleset:
+        Domain:
+            - Helpers
+            - Attributes
+            - Events
+            - Uuid
+
+        Application:
+            - Domain
+            - Helpers
+            - Attributes
+            - Events
+            - Uuid
+
+        Infrastructure:
+            - Domain
+            - Application
+            - Vendors
+            - Helpers
+            - Attributes
+            - Uuid
+
+        Helpers:
+            - Vendors
