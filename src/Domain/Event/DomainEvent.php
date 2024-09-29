@@ -10,11 +10,11 @@ use Symfony\Contracts\EventDispatcher\Event;
 abstract class DomainEvent extends Event
 {
     public readonly string $id;
-    public readonly int $timestamp;
+    public readonly int $occurredOn;
 
     public function __construct(
     ) {
         $this->id = Uuid::uuid4()->toString();
-        $this->timestamp = time();
+        $this->occurredOn = time();
     }
 }
