@@ -30,6 +30,8 @@ deptrac:
               - type: classNameRegex
                 value: '#^Doctrine\\ORM\\(?!(Mapping))#'
               - type: classNameRegex
+                value: '#^Doctrine\\ODM\\(?!(Mapping))#'
+              - type: classNameRegex
                 value: '#^Webmozart\\Assert\\Assert#'
 
         - name: Attributes

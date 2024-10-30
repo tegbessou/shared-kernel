@@ -10,6 +10,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "api-platform/core": "^4.0",
+        "doctrine/mongodb-odm": "^2.9",
         "doctrine/orm": "^3.2",
         "ramsey/uuid": "^4.7",
         "symfony/console": "7.1.*",

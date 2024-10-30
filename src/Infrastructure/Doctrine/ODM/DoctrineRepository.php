@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine;
+namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine\ODM;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\QueryBuilder;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\Query\Builder;
 use TegCorp\SharedKernelBundle\Domain\Repository\PaginatorInterface;
 use TegCorp\SharedKernelBundle\Domain\Repository\RepositoryInterface;
 use TegCorp\SharedKernelBundle\Infrastructure\Webmozart\Assert;
@@ -21,16 +20,13 @@ abstract class DoctrineRepository implements RepositoryInterface
     private ?int $page = null;
     private ?int $itemsPerPage = null;
 
-    private QueryBuilder $queryBuilder;
+    private Builder $queryBuilder;
 
     public function __construct(
-        protected EntityManagerInterface $entityManager,
+        protected DocumentManager $documentManager,
         string $entityClass,
-        string $alias,
     ) {
-        $this->queryBuilder = $this->entityManager->createQueryBuilder()
-            ->select($alias)
-            ->from($entityClass, $alias);
+        $this->queryBuilder = $this->documentManager->createQueryBuilder($entityClass);
     }
 
     #[\Override]
@@ -42,7 +38,10 @@ abstract class DoctrineRepository implements RepositoryInterface
             return;
         }
 
-        yield from $this->queryBuilder->getQuery()->getResult();
+        /** @var \Iterator<T> $results */
+        $results = $this->queryBuilder->getQuery()->execute();
+
+        yield from $results;
     }
 
     #[\Override]
@@ -63,12 +62,12 @@ abstract class DoctrineRepository implements RepositoryInterface
         $firstResult = ($this->page - 1) * $this->itemsPerPage;
         $maxResults = $this->itemsPerPage;
 
-        $repository = $this->filter(static function (QueryBuilder $qb) use ($firstResult, $maxResults): void {
-            $qb->setFirstResult($firstResult)->setMaxResults($maxResults);
+        $repository = $this->filter(static function (Builder $qb) use ($firstResult, $maxResults): void {
+            $qb->skip($firstResult)->limit($maxResults);
         });
 
         /** @var Paginator<T> $paginator */
-        $paginator = new Paginator($repository->queryBuilder->getQuery());
+        $paginator = new Paginator($repository->queryBuilder);
 
         return new DoctrinePaginator($paginator);
     }
@@ -107,7 +106,7 @@ abstract class DoctrineRepository implements RepositoryInterface
         return $cloned;
     }
 
-    protected function query(): QueryBuilder
+    protected function query(): Builder
     {
         return clone $this->queryBuilder;
     }

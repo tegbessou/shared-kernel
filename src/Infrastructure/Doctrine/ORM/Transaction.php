@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine;
+namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine\ORM;
 
 use Doctrine\ORM\EntityManagerInterface;
 use TegCorp\SharedKernelBundle\Application\Service\TransactionInterface;

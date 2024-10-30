@@ -46,7 +46,7 @@ jobs:
           php-version: 8.3
       - run: |
           composer install --ignore-platform-reqs
-          XDEBUG_MODE=off vendor/bin/deptrac --report-uncovered
+          XDEBUG_MODE=off vendor/bin/deptrac --fail-on-uncovered
 
   tests:
     runs-on: ubuntu-22.04
