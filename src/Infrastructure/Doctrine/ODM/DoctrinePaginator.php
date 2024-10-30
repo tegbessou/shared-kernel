@@ -1,10 +1,7 @@
 <?php
 
-declare(strict_types=1);
+namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine\ODM;
 
-namespace TegCorp\SharedKernelBundle\Infrastructure\Doctrine;
-
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use TegCorp\SharedKernelBundle\Domain\Repository\PaginatorInterface;
 
 /**
@@ -23,8 +20,8 @@ final readonly class DoctrinePaginator implements PaginatorInterface
     public function __construct(
         private Paginator $paginator,
     ) {
-        $firstResult = $paginator->getQuery()->getFirstResult();
-        $maxResults = $paginator->getQuery()->getMaxResults();
+        $firstResult = $this->paginator->getQuery()->getQuery()->getQuery()['skip'] ?? 0;
+        $maxResults = $this->paginator->getQuery()->getQuery()->getQuery()['limit'] ?? null;
 
         if (null === $maxResults) {
             throw new \InvalidArgumentException('Missing maxResults from the query.');
