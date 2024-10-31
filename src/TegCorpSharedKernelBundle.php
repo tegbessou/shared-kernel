@@ -16,7 +16,7 @@ use TegCorp\SharedKernelBundle\Application\Query\AsQueryHandler;
 
 class TegCorpSharedKernelBundle extends AbstractBundle
 {
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container->registerAttributeForAutoconfiguration(AsQueryHandler::class, static function (ChildDefinition $definition): void {
             $definition->addTag('messenger.message_handler', ['bus' => 'query.bus']);
