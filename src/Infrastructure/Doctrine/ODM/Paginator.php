@@ -30,6 +30,9 @@ final class Paginator implements \Countable, \IteratorAggregate
         return $this->query;
     }
 
+    /**
+     * @return int<0, max>
+     */
     public function count(): int
     {
         if (null === $this->count) {

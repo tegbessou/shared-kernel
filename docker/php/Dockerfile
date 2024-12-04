@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp
+FROM dunglas/frankenphp:1.3-php8.4
 
 RUN apt update && apt install -y wget unzip
 

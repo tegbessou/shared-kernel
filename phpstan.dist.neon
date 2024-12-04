@@ -1,5 +1,5 @@
 parameters:
-    level: 8
+    level: 10
     paths:
         - config/
         - src/
@@ -9,6 +9,8 @@ parameters:
         -
             identifier: missingType.iterableValue
         -
+            identifier: trait.unused
+        -
             message: '#PHPDoc tag \@return with type TegCorp\\SharedKernelBundle\\Infrastructure\\Doctrine\\ODM\\DoctrineRepository\<T of object\> is not subtype of native type static\(TegCorp\\SharedKernelBundle\\Infrastructure\\Doctrine\\ODM\\DoctrineRepository\<T of object\>\).#'
             path: src/Infrastructure/Doctrine/ODM/DoctrineRepository.php
         -
@@ -17,7 +19,15 @@ parameters:
         -
             message: '#PHPDoc tag \@return with type TegCorp\\SharedKernelBundle\\Domain\\Repository\\RepositoryInterface\<T of object\> is not subtype of native type static\(TegCorp\\SharedKernelBundle\\Domain\\Repository\\RepositoryInterface\<T of object\>\).#'
             path: src/Domain/Repository/RepositoryInterface.php
-
         -
             message: '#Parameter \#1 \$from of method Doctrine\\ORM\\QueryBuilder\:\:from\(\) expects class-string, string given.#'
+            path: src/Infrastructure/Doctrine/ORM/DoctrineRepository.php
+        -
+            message: '#Method TegCorp\\SharedKernelBundle\\Infrastructure\\Doctrine\\ODM\\Paginator\:\:count\(\) should return int\<0, max\> but returns int.#'
+            path: src/Infrastructure/Doctrine/ODM/Paginator.php
+        -
+            message: '#Method TegCorp\\SharedKernelBundle\\Infrastructure\\Doctrine\\ODM\\Paginator\:\:getIterator\(\) should return Traversable\<\(int\|string\), T\> but returns ArrayIterator\<\(int\|string\), mixed\>.#'
+            path: src/Infrastructure/Doctrine/ODM/Paginator.php
+        -
+            message: '#Generator expects value type T of object, mixed given.#'
             path: src/Infrastructure/Doctrine/ORM/DoctrineRepository.php
