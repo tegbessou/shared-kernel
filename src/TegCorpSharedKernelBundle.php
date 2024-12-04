@@ -29,11 +29,13 @@ class TegCorpSharedKernelBundle extends AbstractBundle
 
     public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
     {
+        /** @var array $config */
         $config = Yaml::parseFile(__DIR__.'/../config/messenger.yaml');
 
-        if (isset($config['framework'])) {
-            $builder->prependExtensionConfig('framework', $config['framework']);
-        }
+        /** @var array<string, mixed> $frameworkConfig */
+        $frameworkConfig = $config['framework'] ?? throw new \LogicException('The messenger.yaml file must have a "framework" key.');
+
+        $builder->prependExtensionConfig('framework', $frameworkConfig);
     }
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void

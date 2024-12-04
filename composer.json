@@ -6,20 +6,20 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "api-platform/core": "^4.0",
         "doctrine/mongodb-odm": "^2.9",
         "doctrine/orm": "^3.2",
         "ramsey/uuid": "^4.7",
-        "symfony/console": "7.1.*",
-        "symfony/dotenv": "7.1.*",
+        "symfony/console": "7.2.*",
+        "symfony/dotenv": "7.2.*",
         "symfony/flex": "^2",
-        "symfony/framework-bundle": "7.1.*",
-        "symfony/messenger": "7.1.*",
-        "symfony/runtime": "7.1.*",
-        "symfony/yaml": "7.1.*",
+        "symfony/framework-bundle": "7.2.*",
+        "symfony/messenger": "7.2.*",
+        "symfony/runtime": "7.2.*",
+        "symfony/yaml": "7.2.*",
         "webmozart/assert": "^1.11"
     },
     "config": {
@@ -46,12 +46,12 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.1.*"
+            "require": "7.2.*"
         }
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.64",
-        "phpstan/phpstan": "^1.12",
+        "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^11.3",
         "qossmic/deptrac": "^2.0"
     }
