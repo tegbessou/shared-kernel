@@ -9,7 +9,6 @@ use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use TegCorp\SharedKernelBundle\Application\Command\CommandBusInterface;
 use TegCorp\SharedKernelBundle\Application\Command\CommandInterface;
-use TegCorp\SharedKernelBundle\Application\Service\TransactionInterface;
 
 final class MessengerCommandBus implements CommandBusInterface
 {
@@ -17,7 +16,6 @@ final class MessengerCommandBus implements CommandBusInterface
 
     public function __construct(
         MessageBusInterface $commandBus,
-        private TransactionInterface $transaction,
     ) {
         $this->messageBus = $commandBus;
     }
@@ -33,17 +31,11 @@ final class MessengerCommandBus implements CommandBusInterface
     public function dispatch(CommandInterface $command): mixed
     {
         try {
-            $this->transaction->begin();
-
             /* @var T */
             $result = $this->handle($command);
 
-            $this->transaction->commit();
-
             return $result;
         } catch (HandlerFailedException $e) {
-            $this->transaction->rollback();
-
             if ($exception = current($e->getWrappedExceptions())) {
                 throw $exception;
             }
